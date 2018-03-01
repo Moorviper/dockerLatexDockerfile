@@ -9,7 +9,7 @@ WORKDIR /data
 
 RUN apt-get update -q \
     && apt-get install -qy build-essential wget libfontconfig1 openjdk-9-jre python-pygments \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
     && wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
 	mkdir /install-tl-unx; \
 	tar -xvf install-tl-unx.tar.gz -C /install-tl-unx --strip-components=1; \
