@@ -13,7 +13,7 @@ RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz; \
     echo "selected_scheme scheme-basic" >> /install-tl-unx/texlive.profile; \
 	/install-tl-unx/install-tl -profile /install-tl-unx/texlive.profile; \
     rm -r /install-tl-unx; \
-	rm install-tl-unx.tar.gz && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
+	rm install-tl-unx.tar.gz
 
 ENV PATH="/usr/local/texlive/2017/bin/x86_64-linux:${PATH}"
 
@@ -21,18 +21,18 @@ ENV HOME /data
 WORKDIR /data
 
 # Install latex packages
-RUN tlmgr install collection-basic && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-bibtexextra && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-binextra && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-langenglish && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-langgerman && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-latex && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-latexextra && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-latexrecommended && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-luatex && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-mathscience && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-pictures && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-plaingeneric && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN tlmgr install collection-pstricks && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
-RUN rm -R /usr/local/texlive/2017/texmf-dist/doc/ && RUN rm -f -R /usr/local/texlive/2017/texmf-dist/doc/  && mkdir  /usr/local/texlive/2017/texmf-dist/doc
+RUN tlmgr install collection-basic && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-bibtexextra && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-binextra && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-langenglish && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-langgerman && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-latex && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-latexextra && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-latexrecommended && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-luatex && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-mathscience && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-pictures && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-plaingeneric && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN tlmgr install collection-pstricks && find "/usr/local/texlive/2017/texmf-dist/doc/" -not -type d -delete
+RUN rm -R /usr/local/texlive/2017/texmf-dist/doc/
 VOLUME ["/data"]
